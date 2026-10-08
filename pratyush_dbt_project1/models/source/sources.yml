@@ -1,5 +1,6 @@
 version: 2
 
+
 sources:
     - name: source
       database: dbt_tutorial_dev

@@ -12,6 +12,7 @@ dependencies = [
     "dbt-databricks>=1.12.5",
 ]
 
+
 [project.scripts]
 pratyush-dbt = "pratyush_dbt:main"
 

@@ -30,3 +30,6 @@ jobs:
 
       - name: Check installed dbt version
         run: dbt --version
+
+      - name: Validate dbt project
+        run: dbt parse

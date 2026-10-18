@@ -32,4 +32,6 @@ jobs:
         run: dbt --version
 
       - name: Validate dbt project
-        run: dbt parse
+        run: dbt parse --no-partial-parse
+        env:
+          DBT_PROFILES_DIR: ${{ github.workspace }}/.dbt

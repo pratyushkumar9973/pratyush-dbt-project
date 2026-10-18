@@ -31,7 +31,26 @@ jobs:
       - name: Check installed dbt version
         run: dbt --version
 
+    
+      - name: Create temporary dbt profile
+        run: |
+          mkdir -p "$RUNNER_TEMP/dbt-profiles"
+          cat > "$RUNNER_TEMP/dbt-profiles/profiles.yml" <<'EOF'
+          pratyush_dbt_project1:
+            target: ci
+            outputs:
+              ci:
+                type: databricks
+                catalog: dbt_tutorial_dev
+                schema: source
+                host: placeholder.databricks.com
+                http_path: /sql/1.0/warehouses/placeholder
+                token: placeholder
+                threads: 1
+          EOF
+
       - name: Validate dbt project
         run: dbt parse --no-partial-parse
         env:
-          DBT_PROFILES_DIR: ${{ github.workspace }}/.dbt
+          DBT_PROFILES_DIR: ${{ runner.temp }}/dbt-profiles
+
